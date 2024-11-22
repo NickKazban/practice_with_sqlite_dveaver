@@ -1,0 +1,52 @@
+ /*CREATE TABLE Persons(
+PersonId INTEGER PRIMARY KEY,
+Name varchar(255),
+Age INTEGER,
+Money REAL,
+Currency varchar(255),
+CityId INTEGER,
+FOREIGN KEY (CityId) REFERENCES Cities(CityId)
+);
+
+----------------------------------------------------------TANLE PErsons VALUES
+
+INSERT INTO Persons 
+(Name, Age, Money, Currency, CityId)
+VALUES
+("Nick Glushenko", 27, 300, "E", 7),
+("Olesya Grishuna", 48, 1500, "E", 8),
+("Oleg Strugyn", 48, 100, "E", NULL);
+
+----------------------------------------------------HAVING Command
+SELECT SUM(Money), Currency FROM  Persons
+WHERE Age >=26
+GROUP BY Currency
+HAVING SUM(Money)>19000; 
+--------------------------------------------JOIN Command
+SELECT Persons.Name, Cities.Name FROM Persons
+JOIN Cities
+ON Persons.CityId = Cities.CityId;
+--------------------------------------------LEFT JOIN Command
+SELECT Cities.Name, Persons.Name, Persons.Money, Persons.Currency FROM Cities
+RIGHT JOIN Persons
+ON Persons.CityId = Cities.CityId
+WHERE Cities.Name LIKE "Oles%";
+-----------------------------------------ADD COLUMN 
+ALTER TABLE Persons
+ADD COLUMN Gender varchar(20);
+
+SELECT * FROM Persons;
+-----------------------------------------ADD GENDER VALUES
+UPDATE Persons
+SET Gender = "Normal"
+WHERE Money >999;
+
+SELECT * FROM Persons;
+-----------------------------------------DELETE USer
+DELETE FROM Persons
+WHERE Money <= 100 AND Currency="$";
+
+SELECT * FROM Persons;
+*/-----------------------------------------
+
+
